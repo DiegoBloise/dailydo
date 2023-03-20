@@ -33,11 +33,12 @@ public class TaskController {
                 + "deadline,"
                 + "created_at,"
                 + "updated_at)"
-                + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+                + "VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
             connection = connectionManager.getConnection();
             statement = connection.prepareStatement(query);
+
             statement.setInt(1, task.getProjectId());
             statement.setString(2, task.getName());
             statement.setString(3, task.getDescription());
@@ -46,6 +47,7 @@ public class TaskController {
             statement.setDate(6, task.getDeadline());
             statement.setDate(7, task.getCreatedAt());
             statement.setDate(8, task.getUpdatedAt());
+
             statement.execute();
         } catch (SQLException e) {
             throw new SQLException("Erro ao criar a tarefa: " + e.getMessage());
@@ -54,23 +56,44 @@ public class TaskController {
         }
     }
 
-    public void read(Task task) throws SQLException {
-        String query = "SELECT FROM tasks WHERE id = ?";
+    public Task readById(int taskId) throws SQLException {
+        String query = "SELECT * FROM tasks WHERE id = ?;";
+
+        Task task = null;
+        ResultSet resultSet = null;
 
         try {
             connection = connectionManager.getConnection();
             statement = connection.prepareStatement(query);
-            statement.setInt(1, task.getId());
-            statement.execute();
+
+            statement.setInt(1, taskId);
+
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                task = new Task(
+                    resultSet.getInt("id"),
+                    resultSet.getInt("project_id"),
+                    resultSet.getString("name"),
+                    resultSet.getString("description"),
+                    resultSet.getBoolean("completed"),
+                    resultSet.getString("notes"),
+                    resultSet.getDate("deadline"),
+                    resultSet.getDate("created_at"),
+                    resultSet.getDate("updated_at"));
+            } else {
+                throw new SQLException("Nenhuma tarefa encontrada com o ID " + taskId);
+            }
         } catch (SQLException e) {
             throw new SQLException("Erro ao carregar a tarefa: " + e.getMessage());
         } finally {
             connectionManager.closeConnection(connection, statement);
         }
+        return task;
     }
 
     public void update(Task task) throws SQLException {
-        String query = "UPDATE tasks SET"
+        String query = "UPDATE tasks SET "
                 + "project_id = ?, "
                 + "name = ?, "
                 + "description = ?, "
@@ -78,12 +101,13 @@ public class TaskController {
                 + "notes = ?, "
                 + "deadline = ?, "
                 + "created_at = ?, "
-                + "updated_at = ?, "
-                + "WHERE id = ?";
+                + "updated_at = ? "
+                + "WHERE id = ?;";
 
         try {
             connection = connectionManager.getConnection();
             statement = connection.prepareStatement(query);
+
             statement.setInt(1, task.getProjectId());
             statement.setString(2, task.getName());
             statement.setString(3, task.getDescription());
@@ -93,6 +117,7 @@ public class TaskController {
             statement.setDate(7, task.getCreatedAt());
             statement.setDate(8, task.getUpdatedAt());
             statement.setInt(9, task.getId());
+
             statement.execute();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao atualizar tarefa: " + e.getMessage());
@@ -101,13 +126,15 @@ public class TaskController {
         }
     }
 
-    public void delete(Task task) throws SQLException {
-        String query = "DELETE FROM tasks WHERE id = ?";
+    public void deleteById(int taskId) throws SQLException {
+        String query = "DELETE FROM tasks WHERE id = ?;";
 
         try {
             connection = connectionManager.getConnection();
             statement = connection.prepareStatement(query);
-            statement.setInt(1, task.getId());
+
+            statement.setInt(1, taskId);
+
             statement.execute();
         } catch (SQLException e) {
             throw new SQLException("Erro ao deletar a tarefa: " + e.getMessage());
@@ -117,7 +144,7 @@ public class TaskController {
     }
 
     public List<Task> getAll(Project project) throws SQLException {
-        String query = "SELECT * FROM tasks WHERE project_id = ?";
+        String query = "SELECT * FROM tasks WHERE project_id = ?;";
 
         List<Task> tasks = new ArrayList<Task>();
         ResultSet resultSet = null;
@@ -125,7 +152,9 @@ public class TaskController {
         try {
             connection = connectionManager.getConnection();
             statement = connection.prepareStatement(query);
+
             statement.setInt(1, project.getId());
+
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -146,6 +175,7 @@ public class TaskController {
             throw new SQLException("Erro ao exibir tarefas: " + e.getMessage());
         } finally {
             connectionManager.closeConnection(connection, statement);
+
             if (resultSet != null) {
                 resultSet.close();
             }

@@ -33,10 +33,12 @@ public class ProjectController {
         try {
             connection = connectionManager.getConnection();
             statement = connection.prepareStatement(query);
+
             statement.setString(1, project.getName());
             statement.setString(2, project.getDescription());
             statement.setDate(3, project.getCreatedAt());
             statement.setDate(4, project.getUpdatedAt());
+
             statement.execute();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao criar o projeto: " + e.getMessage());
@@ -44,7 +46,7 @@ public class ProjectController {
     }
 
     public List<Project> getAll() throws SQLException {
-        String query = "SELECT * from projects";
+        String query = "SELECT * from projects;";
 
         List<Project> projects = new ArrayList<Project>();
         ResultSet resultSet = null;
@@ -52,6 +54,7 @@ public class ProjectController {
         try {
             connection = connectionManager.getConnection();
             statement = connection.prepareStatement(query);
+
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -68,6 +71,7 @@ public class ProjectController {
             throw new RuntimeException("Erro ao exibir projetos: " + e);
         } finally {
             connectionManager.closeConnection(connection, statement);
+
             if (resultSet != null) {
                 resultSet.close();
             }
@@ -76,34 +80,39 @@ public class ProjectController {
     }
 
     public void update(Project project) {
-        String query = "UPDATE projects SET"
+        String query = "UPDATE projects SET "
             + "name = ?, "
             + "description = ?, "
             + "created_at = ?, "
             + "updated_at = ? "
-            + "WHERE id = ?";
+            + "WHERE id = ?;";
 
         try {
             connection = connectionManager.getConnection();
             statement = connection.prepareStatement(query);
+
             statement.setString(1, project.getName());
             statement.setString(2, project.getDescription());
             statement.setDate(3, project.getCreatedAt());
             statement.setDate(4, project.getUpdatedAt());
             statement.setInt(5, project.getId());
+
             statement.execute();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao atualizar o projeto: " + e);
         }
     }
 
-    public void delete(Project project) {
-        String query = "DELETE FROM projects WHERE id = ?";
+    public void deleteById(int projectId) {
+        String query = "DELETE FROM projects WHERE id = ?;";
 
         try {
             connection = connectionManager.getConnection();
             statement = connection.prepareStatement(query);
-            statement.setInt(1, project.getId());
+
+            statement.setInt(1, projectId);
+
+            statement.execute();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao remover o projeto: " + e);
         }
