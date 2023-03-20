@@ -39,7 +39,7 @@ public class ProjectController {
             statement.setDate(4, project.getUpdatedAt());
             statement.execute();
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao criar a tarefa: " + e.getMessage());
+            throw new RuntimeException("Erro ao criar o projeto: " + e.getMessage());
         }
     }
 
@@ -65,7 +65,7 @@ public class ProjectController {
                 projects.add(project);
             }
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao exibir tarefas: " + e);
+            throw new RuntimeException("Erro ao exibir projetos: " + e);
         } finally {
             connectionManager.closeConnection(connection, statement);
             if (resultSet != null) {
@@ -93,7 +93,7 @@ public class ProjectController {
             statement.setInt(5, project.getId());
             statement.execute();
         } catch (Exception e) {
-            throw new RuntimeException("Não foi possível atualizar o projeto: " + e);
+            throw new RuntimeException("Erro ao atualizar o projeto: " + e);
         }
     }
 

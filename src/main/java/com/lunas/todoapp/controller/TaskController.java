@@ -48,7 +48,7 @@ public class TaskController {
             statement.setDate(8, task.getUpdatedAt());
             statement.execute();
         } catch (SQLException e) {
-            throw new SQLException("Erro ao criar tarefa: " + e.getMessage());
+            throw new SQLException("Erro ao criar a tarefa: " + e.getMessage());
         } finally {
             connectionManager.closeConnection(connection, statement);
         }
@@ -63,7 +63,7 @@ public class TaskController {
             statement.setInt(1, task.getId());
             statement.execute();
         } catch (SQLException e) {
-            throw new SQLException("Erro ao ler a tarefa: " + e.getMessage());
+            throw new SQLException("Erro ao carregar a tarefa: " + e.getMessage());
         } finally {
             connectionManager.closeConnection(connection, statement);
         }
@@ -95,7 +95,7 @@ public class TaskController {
             statement.setInt(9, task.getId());
             statement.execute();
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao atualizar tarefas: " + e.getMessage());
+            throw new RuntimeException("Erro ao atualizar tarefa: " + e.getMessage());
         } finally {
             connectionManager.closeConnection(connection);
         }
