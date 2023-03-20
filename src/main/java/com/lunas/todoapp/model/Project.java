@@ -1,6 +1,6 @@
 package com.lunas.todoapp.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Project {
     private int id;
@@ -10,11 +10,11 @@ public class Project {
     private Date updatedAt;
 
     public Project(int id, String name, String description, Date createdAt, Date updatedAt) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.setId(id);
+        this.setName(name);
+        this.setDescription(description);
+        this.setCreatedAt(createdAt);
+        this.setUpdatedAt(updatedAt);
     }
 
     public int getId() {
@@ -56,7 +56,7 @@ public class Project {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-    
+
     @Override
     public String toString() {
         return "Projects{" + "id=" + id + ", name=" + name + ", description=" + description + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';

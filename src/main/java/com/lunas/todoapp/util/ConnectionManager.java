@@ -2,6 +2,7 @@ package com.lunas.todoapp.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public final class ConnectionManager {
@@ -22,12 +23,12 @@ public final class ConnectionManager {
         this.setDatabase(database);
         this.setUser(user);
         this.setPassword(password);
-        
+
         this.setDriver();
         this.setUrl();
     }
 
-    public Connection getConnection() {    
+    public Connection getConnection() {
         try {
             return DriverManager.getConnection(this.getUrl(), this.getUser(), this.getPassword());
         } catch (SQLException ex) {
@@ -35,7 +36,7 @@ public final class ConnectionManager {
         }
     }
 
-    public void closeConnection(Connection connection) {    
+    public void closeConnection(Connection connection) {
         try {
             if (connection != null) {
                 connection.close();
@@ -44,7 +45,20 @@ public final class ConnectionManager {
             throw new RuntimeException("Erro ao fechar a conexão com o banco de dados: " + ex.getMessage());
         }
     }
-    
+
+    public void closeConnection(Connection connection, PreparedStatement statement) {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+            if (statement != null) {
+                statement.close();;
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException("Erro ao fechar a conexão com o banco de dados: " + ex.getMessage());
+        }
+    }
+
     public String getSgbd() {
         return sgbd;
     }
