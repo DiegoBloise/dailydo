@@ -1,4 +1,4 @@
-package com.lunas.todoapp.util;
+package com.lunas.dailydo.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

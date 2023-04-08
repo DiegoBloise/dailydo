@@ -1,4 +1,4 @@
-package com.lunas.todoapp.model;
+package com.lunas.dailydo.model;
 
 import java.sql.Date;
 

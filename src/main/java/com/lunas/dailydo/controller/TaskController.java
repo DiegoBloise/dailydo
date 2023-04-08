@@ -1,10 +1,10 @@
-package com.lunas.todoapp.controller;
+package com.lunas.dailydo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.lunas.todoapp.model.Project;
-import com.lunas.todoapp.model.Task;
-import com.lunas.todoapp.util.ConnectionManager;
+import com.lunas.dailydo.model.Project;
+import com.lunas.dailydo.model.Task;
+import com.lunas.dailydo.util.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
