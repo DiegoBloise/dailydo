@@ -14,7 +14,7 @@ public class ProjectController {
     private final String sbgd = "mysql";
     private final String domain = "localhost";
     private final String port = "3306";
-    private final String database = "todoapp";
+    private final String database = "dailydo";
     private final String user = "root";
     private final String password = "";
 
