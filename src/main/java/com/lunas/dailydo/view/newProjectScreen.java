@@ -38,7 +38,7 @@ public class newProjectScreen extends javax.swing.JDialog {
         jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(300, 350));
+        setTitle("Create New Project");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(107, 0, 204));

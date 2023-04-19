@@ -57,6 +57,7 @@ public class mainScreen extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("DailyDo");
         setMinimumSize(new java.awt.Dimension(600, 700));
 
         headerPane.setBackground(new java.awt.Color(107, 0, 204));
@@ -301,10 +302,8 @@ public class mainScreen extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new mainScreen().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new mainScreen().setVisible(true);
         });
     }
 
