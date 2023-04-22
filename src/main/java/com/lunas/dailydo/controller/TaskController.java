@@ -59,8 +59,8 @@ public class TaskController {
     public Task readById(int taskId) throws SQLException {
         String query = "SELECT * FROM tasks WHERE id = ?;";
 
-        Task task = null;
-        ResultSet resultSet = null;
+        Task task;
+        ResultSet resultSet;
 
         try {
             connection = connectionManager.getConnection();
@@ -146,7 +146,7 @@ public class TaskController {
     public List<Task> getAll(Project project) throws SQLException {
         String query = "SELECT * FROM tasks WHERE project_id = ?;";
 
-        List<Task> tasks = new ArrayList<Task>();
+        List<Task> tasks = new ArrayList<>();
         ResultSet resultSet = null;
 
         try {

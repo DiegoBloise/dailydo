@@ -48,7 +48,7 @@ public class ProjectController {
     public List<Project> getAll() throws SQLException {
         String query = "SELECT * from projects;";
 
-        List<Project> projects = new ArrayList<Project>();
+        List<Project> projects = new ArrayList<>();
         ResultSet resultSet = null;
 
         try {
@@ -59,7 +59,6 @@ public class ProjectController {
 
             while (resultSet.next()) {
                 Project project = new Project(
-                    resultSet.getInt("id"),
                     resultSet.getString("name"),
                     resultSet.getString("description"),
                     resultSet.getDate("created_at"),

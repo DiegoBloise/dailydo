@@ -1,6 +1,7 @@
 package com.lunas.dailydo.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public final class Task {
     private int id;
@@ -23,6 +24,11 @@ public final class Task {
         this.setDeadline(deadline);
         this.setCreatedAt(createdAt);
         this.setUpdatedAt(updatedAt);
+    }
+    
+    public Task(){
+        this.setCreatedAt(Date.valueOf(LocalDate.now()));
+        this.setUpdatedAt(Date.valueOf(LocalDate.now()));
     }
 
     public int getId() {
