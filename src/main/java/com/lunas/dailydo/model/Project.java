@@ -1,7 +1,6 @@
 package com.lunas.dailydo.model;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import java.util.Date;
 
 public final class Project {
     private int id;
@@ -18,8 +17,8 @@ public final class Project {
     }
     
     public Project() {
-        this.setCreatedAt(Date.valueOf(LocalDate.now()));
-        this.setUpdatedAt(Date.valueOf(LocalDate.now()));
+        this.setCreatedAt(new Date());
+        this.setUpdatedAt(new Date());
     }
 
     public int getId() {

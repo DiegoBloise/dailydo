@@ -166,6 +166,11 @@ public final class mainScreen extends javax.swing.JFrame {
 
         addTaskIconLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addTaskIconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add-purple.png"))); // NOI18N
+        addTaskIconLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addTaskIconLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout addTaskPaneLayout = new javax.swing.GroupLayout(addTaskPane);
         addTaskPane.setLayout(addTaskPaneLayout);
@@ -313,6 +318,12 @@ public final class mainScreen extends javax.swing.JFrame {
         newProjectScreen.setVisible(true);
     }//GEN-LAST:event_addProjectIconLabelMouseClicked
 
+    private void addTaskIconLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTaskIconLabelMouseClicked
+        newTaskScreen newTaskScreen = new newTaskScreen(this, rootPaneCheckingEnabled);
+        
+        newTaskScreen.setVisible(true);
+    }//GEN-LAST:event_addTaskIconLabelMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -332,11 +343,6 @@ public final class mainScreen extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(mainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {

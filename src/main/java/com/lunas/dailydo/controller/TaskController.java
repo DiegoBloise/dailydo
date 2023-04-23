@@ -5,6 +5,7 @@ import java.util.List;
 import com.lunas.dailydo.model.Project;
 import com.lunas.dailydo.model.Task;
 import com.lunas.dailydo.util.ConnectionManager;
+import java.sql.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,9 +45,9 @@ public class TaskController {
             statement.setString(3, task.getDescription());
             statement.setBoolean(4, task.isCompleted());
             statement.setString(5, task.getNotes());
-            statement.setDate(6, task.getDeadline());
-            statement.setDate(7, task.getCreatedAt());
-            statement.setDate(8, task.getUpdatedAt());
+            statement.setDate(6, new Date(task.getDeadline().getTime()));
+            statement.setDate(7, new Date(task.getCreatedAt().getTime()));
+            statement.setDate(8, new Date(task.getUpdatedAt().getTime()));
 
             statement.execute();
         } catch (SQLException e) {
@@ -113,13 +114,13 @@ public class TaskController {
             statement.setString(3, task.getDescription());
             statement.setBoolean(4, task.isCompleted());
             statement.setString(5, task.getNotes());
-            statement.setDate(6, task.getDeadline());
-            statement.setDate(7, task.getCreatedAt());
-            statement.setDate(8, task.getUpdatedAt());
+            statement.setDate(6, new Date(task.getDeadline().getTime()));
+            statement.setDate(7, new Date(task.getCreatedAt().getTime()));
+            statement.setDate(8, new Date(task.getUpdatedAt().getTime()));
             statement.setInt(9, task.getId());
 
             statement.execute();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Erro ao atualizar tarefa: " + e.getMessage());
         } finally {
             connectionManager.closeConnection(connection);

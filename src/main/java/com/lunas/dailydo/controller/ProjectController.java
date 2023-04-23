@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 public class ProjectController {
@@ -36,11 +37,11 @@ public class ProjectController {
 
             statement.setString(1, project.getName());
             statement.setString(2, project.getDescription());
-            statement.setDate(3, project.getCreatedAt());
-            statement.setDate(4, project.getUpdatedAt());
+            statement.setDate(3, new Date(project.getCreatedAt().getTime()));
+            statement.setDate(4, new Date(project.getUpdatedAt().getTime()));
 
             statement.execute();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Erro ao criar o projeto: " + e.getMessage());
         }
     }
@@ -66,7 +67,7 @@ public class ProjectController {
 
                 projects.add(project);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Erro ao exibir projetos: " + e);
         } finally {
             connectionManager.closeConnection(connection, statement);
@@ -92,12 +93,12 @@ public class ProjectController {
 
             statement.setString(1, project.getName());
             statement.setString(2, project.getDescription());
-            statement.setDate(3, project.getCreatedAt());
-            statement.setDate(4, project.getUpdatedAt());
+            statement.setDate(3, new Date(project.getCreatedAt().getTime()));
+            statement.setDate(4, new Date(project.getUpdatedAt().getTime()));
             statement.setInt(5, project.getId());
 
             statement.execute();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Erro ao atualizar o projeto: " + e);
         }
     }
@@ -112,7 +113,7 @@ public class ProjectController {
             statement.setInt(1, projectId);
 
             statement.execute();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Erro ao remover o projeto: " + e);
         }
     }

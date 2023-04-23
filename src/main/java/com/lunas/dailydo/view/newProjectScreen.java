@@ -161,12 +161,12 @@ public class newProjectScreen extends javax.swing.JDialog {
             projectController.create(project);
 
             JOptionPane.showMessageDialog(rootPane,
-                    "Project saved successfully!",
+                    "Project added successfully!",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(rootPane, 
-                    "An error occurred while attempting to save the project!" + e.getMessage(),
+                    "An error occurred while attempting to add the project!" + e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
         this.dispose();

@@ -52,7 +52,7 @@ public final class ConnectionManager {
                 connection.close();
             }
             if (statement != null) {
-                statement.close();;
+                statement.close();
             }
         } catch (SQLException ex) {
             throw new RuntimeException("Erro ao fechar a conexão com o banco de dados: " + ex.getMessage());
