@@ -6,19 +6,27 @@ package com.lunas.dailydo.view;
 
 import java.awt.Color;
 import java.awt.Font;
-
+import com.lunas.dailydo.model.Project;
+import javax.swing.DefaultListModel;
+import com.lunas.dailydo.controller.ProjectController;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Diego Bloise
  */
 public final class mainScreen extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainScreen
-     */
+    ProjectController projectController = new ProjectController();
+    DefaultListModel projectListModel = new DefaultListModel();
+
+    
     public mainScreen() {
         initComponents();
         decorateTasksTable();
+        updateProjectsList();
     }
 
     /**
@@ -142,7 +150,7 @@ public final class mainScreen extends javax.swing.JFrame {
             addProjectPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addProjectPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(addProjectLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                .addComponent(addProjectLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addProjectIconLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -198,11 +206,7 @@ public final class mainScreen extends javax.swing.JFrame {
 
         projectsPaneList.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         projectsPaneList.setForeground(new java.awt.Color(107, 0, 204));
-        projectsPaneList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        projectsPaneList.setModel(projectsPaneList.getModel());
         projectsPaneList.setFixedCellHeight(50);
         projectsPaneScroll.setViewportView(projectsPaneList);
 
@@ -261,7 +265,7 @@ public final class mainScreen extends javax.swing.JFrame {
         tasksPane.setLayout(tasksPaneLayout);
         tasksPaneLayout.setHorizontalGroup(
             tasksPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
+            .addGap(0, 344, Short.MAX_VALUE)
             .addGroup(tasksPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tasksPaneLayout.createSequentialGroup()
                     .addContainerGap()
@@ -320,7 +324,7 @@ public final class mainScreen extends javax.swing.JFrame {
 
     private void addTaskIconLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTaskIconLabelMouseClicked
         newTaskScreen newTaskScreen = new newTaskScreen(this, rootPaneCheckingEnabled);
-        
+        newTaskScreen.setProject(null);
         newTaskScreen.setVisible(true);
     }//GEN-LAST:event_addTaskIconLabelMouseClicked
 
@@ -381,4 +385,16 @@ public final class mainScreen extends javax.swing.JFrame {
         tasksTable.setAutoCreateRowSorter(true);
     }
     
+    public void updateProjectsList(){
+        try {
+            List<Project> projects = projectController.getAll();
+            
+            projectListModel.clear();
+            for (Project project: projects) {
+                projectListModel.addElement(project);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

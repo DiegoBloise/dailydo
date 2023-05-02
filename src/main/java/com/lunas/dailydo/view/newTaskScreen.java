@@ -5,9 +5,9 @@
 package com.lunas.dailydo.view;
 
 import com.lunas.dailydo.controller.TaskController;
+import com.lunas.dailydo.model.Project;
 import com.lunas.dailydo.model.Task;
 import java.awt.HeadlessException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 public class newTaskScreen extends javax.swing.JDialog {
 
     TaskController taskController;
+    Project project;
 
     public newTaskScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -196,9 +197,10 @@ public class newTaskScreen extends javax.swing.JDialog {
             
             Task task = new Task();
             
+            task.setProjectId(project.getId());
             task.setName(nameTextField.getText());
             task.setDescription(descriptionTextArea.getText());
-            task.setDeadline(Date.valueOf(dateFormat.parse(deadlineFormattedTextField.getText()).toString()));
+            task.setDeadline(dateFormat.parse(deadlineFormattedTextField.getText()));
             task.setNotes(notesTextArea.getText());
             
             taskController.create(task);
@@ -270,4 +272,8 @@ public class newTaskScreen extends javax.swing.JDialog {
     private javax.swing.JScrollPane notesScrollPane;
     private javax.swing.JTextArea notesTextArea;
     // End of variables declaration//GEN-END:variables
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 }
