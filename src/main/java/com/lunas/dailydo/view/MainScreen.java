@@ -17,13 +17,13 @@ import java.util.logging.Logger;
  *
  * @author Diego Bloise
  */
-public final class mainScreen extends javax.swing.JFrame {
+public final class MainScreen extends javax.swing.JFrame {
 
     ProjectController projectController = new ProjectController();
     DefaultListModel projectListModel = new DefaultListModel();
 
     
-    public mainScreen() {
+    public MainScreen() {
         initComponents();
         decorateTasksTable();
         updateProjectsList();
@@ -317,13 +317,13 @@ public final class mainScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addProjectIconLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addProjectIconLabelMouseClicked
-        newProjectScreen newProjectScreen = new newProjectScreen(this, rootPaneCheckingEnabled);
+        NewProjectScreen newProjectScreen = new NewProjectScreen(this, rootPaneCheckingEnabled);
         
         newProjectScreen.setVisible(true);
     }//GEN-LAST:event_addProjectIconLabelMouseClicked
 
     private void addTaskIconLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTaskIconLabelMouseClicked
-        newTaskScreen newTaskScreen = new newTaskScreen(this, rootPaneCheckingEnabled);
+        NewTaskScreen newTaskScreen = new NewTaskScreen(this, rootPaneCheckingEnabled);
         newTaskScreen.setProject(null);
         newTaskScreen.setVisible(true);
     }//GEN-LAST:event_addTaskIconLabelMouseClicked
@@ -345,12 +345,12 @@ public final class mainScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(mainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new mainScreen().setVisible(true);
+            new MainScreen().setVisible(true);
         });
     }
 
@@ -394,7 +394,7 @@ public final class mainScreen extends javax.swing.JFrame {
                 projectListModel.addElement(project);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

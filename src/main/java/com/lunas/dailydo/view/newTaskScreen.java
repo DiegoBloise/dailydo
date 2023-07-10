@@ -18,12 +18,12 @@ import javax.swing.JOptionPane;
  *
  * @author Diego Bloise
  */
-public class newTaskScreen extends javax.swing.JDialog {
+public class NewTaskScreen extends javax.swing.JDialog {
 
     TaskController taskController;
     Project project;
 
-    public newTaskScreen(java.awt.Frame parent, boolean modal) {
+    public NewTaskScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         taskController = new TaskController();
@@ -214,7 +214,7 @@ public class newTaskScreen extends javax.swing.JDialog {
                     "An error occurred while attempting to add the task!" + e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException | ParseException ex) {
-            Logger.getLogger(newTaskScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NewTaskScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_newTaskIconLabelMouseClicked
@@ -240,12 +240,12 @@ public class newTaskScreen extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(newTaskScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewTaskScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(() -> {
-            newTaskScreen dialog = new newTaskScreen(new javax.swing.JFrame(), true);
+            NewTaskScreen dialog = new NewTaskScreen(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {

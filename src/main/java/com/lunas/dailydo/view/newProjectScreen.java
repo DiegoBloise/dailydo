@@ -13,11 +13,11 @@ import javax.swing.JOptionPane;
  *
  * @author Diego Bloise
  */
-public class newProjectScreen extends javax.swing.JDialog {
+public class NewProjectScreen extends javax.swing.JDialog {
 
     ProjectController projectController;
     
-    public newProjectScreen(java.awt.Frame parent, boolean modal) {
+    public NewProjectScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         projectController = new ProjectController();
@@ -189,7 +189,7 @@ public class newProjectScreen extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(newProjectScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewProjectScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -203,7 +203,7 @@ public class newProjectScreen extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(() -> {
-            newProjectScreen dialog = new newProjectScreen(new javax.swing.JFrame(), true);
+            NewProjectScreen dialog = new NewProjectScreen(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {

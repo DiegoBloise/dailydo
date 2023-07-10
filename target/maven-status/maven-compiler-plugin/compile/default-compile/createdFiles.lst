@@ -1,6 +1,3 @@
-com\mycompany\app\controller\TaskController.class
-com\mycompany\app\util\ConnectionManager.class
-com\mycompany\app\App.class
-com\mycompany\app\controller\ProjectController.class
-com\mycompany\app\model\Project.class
-com\mycompany\app\model\Task.class
+com\lunas\dailydo\view\NewProjectScreen$2.class
+com\lunas\dailydo\view\NewProjectScreen$3.class
+com\lunas\dailydo\view\NewProjectScreen$1.class
